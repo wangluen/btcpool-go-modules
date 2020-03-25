@@ -1,0 +1,108 @@
+{
+    "RPCServer": {
+        "ListenAddr": "0.0.0.0:8999",
+        "User": "admin",
+        "Passwd": "admin",
+        "MainChain":"BTC",
+        "PoolDb": {
+            "host" : "127.0.0.1",
+            "port" : 3306,
+            "username" : "root",
+            "password" : "root",
+            "dbname" : "bpool_local_db"
+        }
+    },
+    "AuxJobMaker": {
+        "CreateAuxBlockIntervalSeconds": 5,
+        "AuxPowJobListSize": 1000,
+        "MaxJobTarget": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "BlockHashPublishPort": "5555",
+    },
+    "Chains": [
+        {
+            "Name": "Namecoin",
+            "AuxTableName" :"found_nmc_blocks",
+            "IsSupportZmq" : true,
+            "SubBlockHashAddress" : "127.0.0.1",
+            "SubBlockHashPort" :"1234",
+            "RPCServer":{
+                "URL": "http://127.0.0.1:8444/",
+                "User": "test",
+                "Passwd": "123"
+            },
+            "CreateAuxBlock": {
+                "Method": "getauxblock",
+                "Params": [],
+                "ResponseKeys": {
+                    "Hash": "hash",
+                    "ChainID": "chainid",
+                    "Bits": "bits",
+                    "Height": "height",
+                    "PrevBlockHash": "previousblockhash",
+                    "CoinbaseValue": "coinbasevalue"
+                }
+            },
+            "SubmitAuxBlock": {
+                "Method": "getauxblock",
+                "Params": [
+                    "{hash-hex}",
+                    "{aux-pow-hex}"
+                ]
+            }
+        },
+        {
+            "Name": "Elastos Regtest",
+            "AuxTableName" :"found_Elastos_blocks",
+            "RPCServer":{
+                "URL": "http://127.0.0.1:4336/",
+                "User": "test",
+                "Passwd": "123"
+            },
+            "CreateAuxBlock": {
+                "Method": "createauxblock",
+                "Params": {
+                    "paytoaddress": "8VYXVxKKSAxkmRrfmGpQR2Kc66XhG6m3ta"
+                },
+                "ResponseKeys": {
+                    "Hash": "hash",
+                    "ChainID": "chainid",
+                    "Bits": "bits",
+                    "Height": "height",
+                    "PrevBlockHash": "previousblockhash",
+                    "CoinbaseValue": "coinbasevalue"
+                }
+            },
+            "SubmitAuxBlock": {
+                "Method": "submitauxblock",
+                "Params": {
+                    "blockhash": "{hash-hex}",
+                    "auxpow": "{aux-pow-hex}"
+                }
+            }
+        },
+        {
+            "Name": "Unobtanium",
+            "RPCServer":{
+                "URL": "http://127.0.0.1:65535/",
+                "User": "test",
+                "Passwd": "123"
+            },
+            "CreateAuxBlock": {
+                "Method": "getauxblock",
+                "Params": [],
+                "ResponseKeys": {
+                    "Hash": "hash",
+                    "ChainID": "chainid",
+                    "Target": "target"
+                }
+            },
+            "SubmitAuxBlock": {
+                "Method": "getauxblock",
+                "Params": [
+                    "{hash-hex}",
+                    "{aux-pow-hex}"
+                ]
+            }
+        }
+    ]
+}

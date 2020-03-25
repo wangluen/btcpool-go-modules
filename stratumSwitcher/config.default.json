@@ -1,0 +1,21 @@
+{
+    "ServerID": 0,
+    "ChainType": "bitcoin",
+    "ListenAddr": "0.0.0.0:18080",
+    "StratumServerMap": {
+        "btc": { "URL": "127.0.0.1:3333" },
+        "bcc": { "URL": "127.0.0.1:3334" },
+        "bcc2btc": { "URL": "127.0.0.1:3335", "UserSuffix": "btc" },
+        "btc2bcc": { "URL": "127.0.0.1:3336", "UserSuffix": "bcc" }
+    },
+    "ZKBroker": [ "127.0.0.1:2181" ],
+    "ZKServerIDAssignDir": "/stratumSwitcher/bitcoin_swid/",
+    "ZKSwitcherWatchDir": "/stratumSwitcher/btcbcc/",
+    "EnableUserAutoReg": true,
+    "ZKAutoRegWatchDir": "/stratumSwitcher/bitcoin_autoreg/",
+    "AutoRegMaxWaitUsers": 50,
+    "StratumServerCaseInsensitive": false,
+    "ZKUserCaseInsensitiveIndex": "/stratumSwitcher/bitcoin_case/",
+    "EnableHTTPDebug": false,
+    "HTTPDebugListenAddr": "127.0.0.1:6060"
+}
